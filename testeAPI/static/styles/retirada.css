@@ -1,0 +1,63 @@
+/*import da fonte e fonte que será usada em tudo*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter",  sans-serif;
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+}
+
+.lado-esquerdo {
+    width: 50%;
+    margin-left: 20px;
+}
+.lado-direito {
+    width: 50%;
+}
+
+.lado-direito img{
+    width: 100%;
+}
+
+.logo {
+    margin-top: 40px;
+}
+
+#cabecalho {
+    padding-top: 50px;
+    margin-left: 40px;
+}
+
+#cabecalho p {
+    opacity: 30%;
+}
+
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+}
+.buttons button{
+    align-self: center;
+    background-color: #7D75DA;
+    border: solid #7D75DA;
+    border-radius: 12px;
+    width: 250px;
+    height: 40px;
+
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#button1 {
+    padding-bottom: 30px;
+}

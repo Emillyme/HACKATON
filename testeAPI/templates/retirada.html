@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirada</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+</head>
+
+<body>
+    <main>
+        <section class="lado-esquerdo">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
+            </div>
+
+            <div id="cabecalho" class="cabecalho-escolha-buscar">
+                <h1>Vamos lá!</h1>
+                <p>Quem vai retirar seus benefícios?</p>
+            </div>
+
+            <form action="/definir_estado" method="POST">
+                <div class="buttons">
+                    <input type="hidden" name="card" value="{{ card }}">
+                    <div id="button1">
+                        <button type="submit" name="tipo_pessoa" value="interno">
+                            Eu mesmo!
+                        </button>
+                    </div>
+
+                    <div id="button2">
+                        <button type="submit" name="tipo_pessoa" value="externo">
+                            Outra pessoa!
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="lado-direito">
+            <img src="{{ url_for('static', filename='images/Fundo.svg') }}" alt="Imagem lateral direita">
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+</head>
+<body>
+    <main>
+        <section class="lado-esquerdo">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
+            </div>
+            <div id="cabecalho">
+                <h1>Olá, Bem-vindo!</h1>
+                <p>Comece inserindo seu EDV...</p>
+            </div>
+            <form action="/cadastro" method="POST">
+                <div class="input-main">
+                    <label for="card">EDV do Colaborador:</label>
+                    <input id="card" class="digite_edv cadastro" type="text" name="card" required>
+                    <div class="button_container">
+                        <button type="submit" class="button_entrar">Enviar e Continuar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="admin-area">
+                <a class="admin-text" href="/admin_login">Área Admin</a>
+            </div>
+        </section>
+        <section class="lado-direito">
+            <img src="{{ url_for('static', filename='images/Fundo.svg') }}" alt="Imagem lateral direita">
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Concluído</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+</head>
+
+<body>
+    <!-- Corpo do site -->
+    <main>
+        <section class="lado-esquerdo">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
+            </div>
+
+            <div id="cabecalho">
+                <h1>Concluído!</h1>
+                <p>Informações sobre a retirada...</p>
+            </div>
+
+            <div class="info-retirada">
+                <div id="data_retirada">
+                    <h3>Data</h3>
+                    <h5>18/12 a 20/12</h5>
+                </div>
+
+                <div id="local_retirada">
+                    <h3>Local</h3>
+
+                    <div class="produto">
+                        <h5>- Cesta fria e cesta quente</h5>
+                        <p>Portaria 4 - Estacionamento do fretado.</p>
+                    </div>
+
+                    <div class="produto">
+                        <h5>- Material escolar e brinquedos</h5>
+                        <p>Portaria 3 - Estacionamento de carros.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lado-direito">
+            <img src="{{ url_for('static', filename='images/Fundo.svg') }}" alt="Imagem lateral direita">
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

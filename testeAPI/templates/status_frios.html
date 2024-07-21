@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Frios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/homeAdmin.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-icon">
+                <a href="/grafico"><img src="{{ url_for('static', filename='images/Stats.png') }}" alt="Home"></a>
+            </div>
+            <div class="sidebar-icon">
+                <a href="/status_frios"><img src="{{ url_for('static', filename='images/frio_on.svg') }}" alt="Frios"></a>
+            </div>
+            <div class="sidebar-icon">
+                <a href="/status_cestas"><img src="{{ url_for('static', filename='images/cesta.svg') }}" alt="Cestas"></a>
+            </div>
+            <div class="sidebar-icon saida-icon">
+                <a href="/"><img src="{{ url_for('static', filename='images/saida.svg') }}" alt="Saida"></a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <h1>Status dos Frios</h1>
+            <div class="stats">
+                <div class="stat-item1">
+                    <div class="for-inline">
+                        <img src="{{ url_for('static', filename='images/icon-retirados.png') }}" alt="Icon" class="stat-icon">
+                        <div class="stat-number" id="retirados-frios">0</div>
+                    </div>
+                    <div class="stat-line"></div>
+                    <div class="stat-label">Retirados</div>
+                </div>
+                <div class="stat-item2">
+                    <div class="for-inline">
+                        <img src="{{ url_for('static', filename='images/icon-ampulheta.png') }}" alt="Icon" class="stat-icon">
+                        <div class="stat-number" id="pendentes-frios">0</div>
+                    </div>
+                    <div class="stat-line"></div>
+                    <div class="stat-label">Pendentes</div>
+                </div>
+                <div class="stat-item3">
+                    <div class="for-inline">
+                        <img src="{{ url_for('static', filename='images/icon-atencao.png') }}" alt="Icon" class="stat-icon">
+                        <div class="stat-number" id="nao-retirados">0</div>
+                    </div>
+                    <div class="stat-line"></div>
+                    <div class="stat-label">Não Retirados</div>
+                </div>
+            </div>
+            <table class="status-table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>EDV</th>
+                        <th>Status Frios</th>
+                    </tr>
+                </thead>
+                <tbody id="status-table-body-frios">
+                    <!-- Dados serão preenchidos pelo JavaScript -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $.getJSON("/get_status_frios", function(data) {
+                var retiradosFrios = 0;
+                var pendentesFrios = 0;
+                var naoRetiradosFrios = 0;
+    
+                $("#status-table-body-frios").empty(); // Limpa a tabela antes de preencher
+                
+                data.forEach(function(item) {
+                    var row = $("<tr></tr>");
+                    var tipo_pessoa_class = item.tipo_pessoa == "interno" ? "interno" : "externo";
+                    
+                    var tendaFriosStatus = item.tenda_frios === "concluido" ? "concluido" : "pendente";
+                    
+                    row.append($("<td></td>").html(`<span class="status ${tipo_pessoa_class}">${item.tipo_pessoa}</span>`));
+                    row.append($("<td></td>").text(item.alt_edv));  <!-- Corrigido de 'edv' para 'alt_edv' -->
+                    row.append($("<td></td>").html(`<span class="status ${tendaFriosStatus}">${tendaFriosStatus}</span>`));
+    
+                    $("#status-table-body-frios").append(row);
+    
+                    if (item.tenda_frios === "concluido") {
+                        retiradosFrios++;
+                    } else if (item.tenda_frios === "pendente") {
+                        pendentesFrios++;
+                    } else {
+                        naoRetiradosFrios++;
+                    }
+                });
+    
+                $("#retirados-frios").text(retiradosFrios);
+                $("#pendentes-frios").text(pendentesFrios);
+                $("#nao-retirados").text(naoRetiradosFrios);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Externos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+</head>
+<body>
+    <main>
+        <section class="lado-esquerdo">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
+            </div>
+
+            <div id="cabecalho">
+                <h1>Próximos Passos</h1>
+                <p>Digite as informações da pessoa que você deseja autorizar a pegar seus benefícios.</p>
+            </div>
+
+            <div class="input-main input-main-cadastro-externo">
+                <form action="/salvar_dados_externos" method="POST">
+                    <input type="hidden" name="card" value="{{ card }}">
+                    
+                    <div class="digite_nome">
+                        <p>Nome Completo</p>
+                        <input class="digite_edv borda_roxo" type="text" name="nome" placeholder="Ex: Adam Smith" required>
+                    </div>
+    
+                    <div id="cpf_email">
+                        <div class="digite_email">
+                            <p>E-mail</p>
+                            <input class="digite_edv borda_roxo email" type="email" name="email" placeholder="exemplo@gmail.com" required>
+                        </div>
+    
+                        <div class="digite_cpf">        
+                            <p>CPF</p>
+                            <input class="digite_edv borda_roxo" type="text" name="cpf" placeholder="Ex: 102.304.203-03" required>
+                        </div>
+                    </div>
+
+                    <div class="termos">
+                        <input type="checkbox" name="aceito-termos" class="aceito-termos" required>
+                        Eu aceito os Termos e Condições
+                    </div>
+
+                    <div class="button_container">
+                        <button type="submit" class="roxo button_entrar">Enviar e Continuar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="lado-direito">
+            <img src="{{ url_for('static', filename='images/Fundo.svg') }}" alt="Fundo">
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
+</body>
+</html>

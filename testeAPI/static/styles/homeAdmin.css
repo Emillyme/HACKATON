@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #F7F6F6;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 80px;
+    background-color: #DFEAE1;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed; /* Adiciona esta linha */
+    height: 100%; /* Adiciona esta linha */
+    overflow-y: auto; /* Adiciona esta linha se a barra lateral tiver conteúdo longo */
+}
+
+.sidebar-icon {
+    margin: 20px 0;
+}
+
+.saida-icon{
+    display: flex;
+    margin-top: auto;
+}
+
+.main-content {
+    margin-left: 100px; /* Ajusta o valor para dar espaço suficiente para a barra lateral fixa */
+    flex: 1;
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 10px;
+    color: #86D299;
+    font-size: 50px;
+}
+
+.sidebar-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.stats {
+    display: flex;
+    margin: 70px 0;
+    justify-content: space-between;
+}
+
+.stat-item1, .stat-item2, .stat-item3 {
+    width: 29%;
+    padding: 40px 30px;
+    border-radius: 8px;
+    color: #F7F6F6;
+}
+
+.stat-item1 {
+    background-color: #42CE8B;
+}
+
+.stat-item2 {
+    background-color: #2EB88E;
+}
+
+.stat-item3 {
+    background-color: #50BA6E;
+}
+
+.stat-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.stat-line {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 10px 0;
+}
+
+.stat-label {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.for-inline {
+    display: flex;
+    align-items: center;
+}
+
+.for-inline img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.status-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.status-table th, .status-table td {
+    padding: 20px;
+    text-align: left;
+}
+
+.status-table th {
+    background-color: #aec5b360;
+}
+
+.status-table tbody tr:nth-child(even) {
+    background-color: #E9EDE9;
+}
+
+.status-table tbody tr:nth-child(odd) {
+    background-color: #F7F6F6;
+}
+
+.status {
+    padding: 5px 50px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.status.pendente {
+    background-color: #075b6e57;
+    color: #fff;
+}
+
+.status.concluido {
+    background-color: rgba(102, 187, 106, 0.452);
+    color: #229F6B;
+    font-weight: 600;
+}
+
+.status.interno{
+    color: #6076c0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.status.externo{
+    color: #397e54;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.status.nao-retirados {
+    background-color: #F44336; /* Vermelho para não retirados */
+}
+
+/* homeAdmin.css ou o arquivo CSS relevante */
+.barras {
+    width: 100%; /* Ajuste a largura conforme necessário */
+    height: 500px; /* Ajuste a altura conforme necessário */
+    margin: auto; /* Centraliza o gráfico horizontalmente */
+}
+
+canvas {
+    width: 100% !important; /* Garante que o canvas use 100% da largura da div pai */
+    height: 100% !important; /* Garante que o canvas use 100% da altura da div pai */
+}

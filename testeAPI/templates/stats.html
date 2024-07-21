@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/homeAdmin.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="sidebar-icon">
+        <a href="/grafico"><img src="{{ url_for('static', filename='images/Stats-on.png') }}" alt="Home" /></a>
+      </div>
+      <div class="sidebar-icon">
+        <a href="/status_frios"><img src="{{ url_for('static', filename='images/frio.svg') }}" alt="Frios" /></a>
+      </div>
+      <div class="sidebar-icon">
+        <a href="/status_cestas"><img src="{{ url_for('static', filename='images/cesta.svg') }}" alt="Cestas" /></a>
+      </div>
+      <div class="sidebar-icon saida-icon">
+        <a href="/"><img src="{{ url_for('static', filename='images/saida.svg') }}" alt="Saida" /></a>
+      </div>
+    </aside>
+    <main>
+      <div class="main-content">
+        <h1>BEM-VINDO ADMIN</h1>
+        <div class="estoque-icones">
+          <div class="estoque-item">
+            <h2>Qdt. inicial do estoque:</h2>
+            <p id="estoque-inicial">3000</p>
+          </div>
+        </div>
+
+        <!-- Gráficos -->
+        <div class="graficos-container">
+          <div class="grafico-barras">
+            <canvas id="grafico-barras"></canvas>
+          </div>
+          <div class="grafico-estoque">
+            <canvas id="grafico-estoque"></canvas>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    async function fetchData() {
+      const response = await fetch("/get_status");
+      const data = await response.json();
+      return data;
+    }
+
+    async function renderCharts() {
+      const data = await fetchData();
+      const estoqueInicial = 3000;
+
+      // Calcular as quantidades
+      const retiradosFrios = data.filter((d) => d.tenda_frios === "concluido").length;
+      const retiradosCesta = data.filter((d) => d.tenda_cesta === "concluido").length;
+
+      const totalRetirados = retiradosFrios + retiradosCesta;
+      const estoqueRestante = estoqueInicial - totalRetirados;
+
+      // Dados para o gráfico de barras
+      const ctxBarras = document.getElementById("grafico-barras").getContext("2d");
+      new Chart(ctxBarras, {
+        type: "bar",
+        data: {
+          labels: [
+            "Total de Pessoas que Retiraram",
+            "Entregues (Frios)",
+            "Entregues (Cesta)"
+          ],
+          datasets: [
+            {
+              label: "Quantidade",
+              data: [totalRetirados, retiradosFrios, retiradosCesta],
+              backgroundColor: [
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)"
+              ],
+              borderColor: [
+                "rgba(75, 192, 192, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)"
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            datalabels: {
+              display: true,
+              color: '#000',
+              font: {
+                weight: 'bold',
+                size: 14,
+              },
+              formatter: function(value) {
+                return value;
+              },
+            },
+          },
+        },
+        plugins: [ChartDataLabels]
+      });
+
+      // Dados para o gráfico de estoque restante
+      const ctxEstoque = document.getElementById("grafico-estoque").getContext("2d");
+      new Chart(ctxEstoque, {
+        type: "doughnut",
+        data: {
+          labels: ["Estoque Restante"],
+          datasets: [
+            {
+              label: "Quantidade",
+              data: [estoqueRestante],
+              backgroundColor: ["rgba(255, 159, 64, 0.2)"],
+              borderColor: ["rgba(255, 159, 64, 1)"],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  const label = context.label || "";
+                  const value = context.raw || 0;
+                  return `${label}: ${value}`;
+                },
+              },
+            },
+            datalabels: {
+              display: true,
+              color: '#000',
+              font: {
+                weight: 'bold',
+                size: 24,
+              },
+              formatter: function(value) {
+                return value;
+              },
+              anchor: 'center',
+              align: 'center',
+              offset: 0,
+            },
+          },
+        },
+        plugins: [ChartDataLabels]
+      });
+    }
+
+    renderCharts();
+  </script>
+  <style>
+    .estoque-icones {
+      display: flex;
+      margin-bottom: 30px;
+      margin-top: 30px;
+    }
+
+    .estoque-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .estoque-item h2 {
+      font-weight: 200;
+      color: #484e4a;
+      margin-right: 10px;
+    }
+
+    .estoque-item p {
+      font-size: 40px;
+      font-weight: 600;
+      color: #484e4a;
+    }
+
+    .graficos-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap; /* Permite que os gráficos se movam para baixo em telas menores */
+    }
+
+    .grafico-barras,
+    .grafico-estoque {
+      flex: 1;
+      min-width: 300px; /* Define uma largura mínima para evitar que os gráficos fiquem muito pequenos */
+    }
+
+    .grafico-barras {
+      flex: 2;
+    }
+
+    .grafico-estoque {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    #grafico-barras {
+      height: 600px !important; /* Ajuste a altura conforme necessário */
+    }
+
+    #grafico-estoque {
+      height: 600px !important; /* Ajuste a altura conforme necessário */
+    }
+
+
+  </style>
+</body>
+</html>

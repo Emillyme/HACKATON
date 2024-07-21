@@ -1,0 +1,286 @@
+/*import da fonte e fonte que será usada em tudo*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter",  sans-serif;
+    overflow: hidden;
+    
+}
+
+main {
+    display: flex;
+}
+
+.lado-esquerdo {
+    width: 50%;
+    margin: 40px 8%;
+}
+.lado-direito {
+    width: 50%;
+}
+
+.lado-direito img{
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    margin-top: 10px;
+}
+
+.logo img{
+    width: 15%;
+}
+
+
+#cabecalho {
+    margin-top: 60px;
+}
+
+#cabecalho p {
+    opacity: 60%;
+    margin-top: 5px;
+}
+
+.input-main {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.input-main-cadastro-externo {
+    margin-top: 50px;
+}
+
+.digite_edv {
+    position: relative;
+}
+
+.digite_edv{
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    height: 40px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    border: solid #2EB88E 0.5px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.cadastro{
+    background-image: url("../images/icone_perfil_adm.svg");
+    padding-left: 50px;
+    background-position: 15px 9px;
+}
+
+.email {
+    background-image: url("../images/icon-mail.svg");
+    padding-left: 50px;
+    background-position: 15px 12px;
+}
+.digite_edv:focus, .digite_edv:active {
+    border-color: #2EB88E;
+    box-shadow: 0 0 3px #2EB88E;
+    outline: none;
+}
+
+span {
+    position: absolute;
+}
+
+.icone-perfil {
+    height: 20px;
+}
+
+.button_entrar {
+    align-self: center;
+    background-color: #2EB88E;
+    border-radius: 7px;
+    padding: 0 70px #2EB88E;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    font-weight: 500;
+    border: none;
+}
+
+.button_entrar:hover{
+    background-color: rgb(31, 105, 80);
+    cursor: pointer;
+}
+
+.button_container{
+    display: flex;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.admin-area{
+    margin-top: 400px;
+}
+
+.admin-area a{
+    color: rgb(17, 124, 88);
+}
+
+.admin {
+    margin-top: 190px;
+
+}
+
+.admin h5 {
+    padding-bottom: 2px;
+}
+
+.admin a {
+    color: #000;
+    text-decoration: none;
+}
+
+.admin button {
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid #2EB88E px;
+    width: 50px;
+    height: 20px;
+}
+
+/* ---------------------------------------- */
+/* pagina cadastro pessoa externa */
+
+.digite_nome, .digite_email, .digite_cpf {
+    display: flex;
+    flex-direction: column;
+}
+
+.digite_nome p, .digite_email p , .digite_cpf p{
+    opacity: 80%;
+}
+#cpf_email{
+    display: flex;
+}
+
+.digite_cpf{
+    margin-left: 15px;
+}
+
+.borda_roxo {
+    border-color: #2EB88E;
+}
+
+.roxo {
+    background-color: #2EB88E;
+    margin-top: 25px;
+}
+
+.aceito-termos:checked {
+    background-color: #2EB88E;
+}
+
+.termos {
+    margin-top: 10px;
+}
+
+/* --------------------------- */
+/* RETIRADA */
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    margin: auto;
+}
+.buttons button{
+    align-self: center;
+    background-color: #2EB88E;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 30px;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.buttons button:hover{
+    background-color: #2EB88E;
+    cursor: pointer;
+}
+
+#button1, #button2 {
+   width: 100%;
+}
+
+#button1 button, #button2 button {
+    width: 100%;
+}
+
+#button2 {
+    margin-top: 25px;
+}
+
+.cabecalho-escolha-buscar {
+    margin-bottom: 40px;
+}
+
+
+/*----------------------*/
+/*PAGE DE CONCLUSÃO*/
+
+.info-retirada {
+    width: 370px;
+    height: 400px;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), inset -3px -3px 5px rgba(255, 255, 255, 0.3);
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;   
+}
+
+#data_retirada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#data_retirada h3{
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+#data_retirada h5{
+    background-color: #2EB88E;
+    width: 300px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+#local_retirada {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+
+    padding-top: 60px;
+}
+
+#local_retirada h5{
+    padding-top: 25px;
+}
+
+#local_retirada p{
+    padding-top: 5px;
+    font-size: 13px;
+}

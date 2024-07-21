@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index_admin.css') }}">
+</head>
+<body>
+    <main>
+        <section class="lado-esquerdo">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
+            </div>
+            <div id="cabecalho">
+                <h1>Olá, Admin!</h1>
+                <p>Insira seu EDV para acessar o painel de administração.</p>
+            </div>
+            <form action="/admin_login" method="POST">
+                <div class="input-main">
+                    <label for="card">EDV do Administrador:</label>
+                    <input id="card" class="digite_edv cadastro" type="text" name="card" required>
+                    <div class="button_container">
+                        <button type="submit" class="button_entrar">Enviar e Continuar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="admin-area">
+                <a class="admin-text" href="/">Voltar</a>
+            </div>
+        </section>
+        <section class="lado-direito">
+            <img src="{{ url_for('static', filename='images/lado-direito (1).svg') }}" alt="Imagem lateral direita">
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
